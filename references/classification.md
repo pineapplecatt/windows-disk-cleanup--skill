@@ -42,7 +42,7 @@ Better to under-report than to misreport something as deletable.
 5. **System areas**: WinSxS, System32, `Windows\Installer` (handle via 磁盘清理/DISM, never manually).
    `pagefile.sys`/`swapfile.sys` managed by OS — never delete. `hiberfil.sys` releases only via
    `powercfg /h off` (admin) and disables hibernation.
-6. `.workbuddy` runtime dirs of the current assistant — do not touch.
+6. 助手运行时目录（当前宿主的程序数据目录，例如 `.workbuddy`、`.claude`、`~/.codex` 等，视宿主而定）— do not touch.
 
 ## Quick decision procedure per candidate folder
 1. Does a process run from it? → 勿动 / close first.

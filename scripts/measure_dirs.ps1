@@ -1,12 +1,14 @@
 # measure_dirs.ps1
 # Purpose: Recursively measure size/statistics of each top-level directory under Root.
-# Designed for the WorkBuddy Windows environment:
-#   - Keep this file pure ASCII to avoid mojibake when executed as a background task.
+# Works in any Windows host (WorkBuddy / Claude Code / other agents / local terminal).
+# No machine-specific paths are hardcoded: everything comes from parameters.
+#   - Keep this file pure ASCII to avoid mojibake in some hosts' background tasks.
 #   - Writes results incrementally to OutFile (read partial results anytime).
-#   - Run via the PowerShell tool (run_in_background=true for large roots like C:\ or D:\).
+#   - Run via a PowerShell tool, or `powershell -NoProfile -File ...` from Bash / CMD.
+#     For large roots (C:\ / D:\) use background execution when the host supports it.
 #
-# Usage:
-#   powershell -NoProfile -ExecutionPolicy Bypass -File measure_dirs.ps1 -Root "D:\" -OutFile "C:\path\workspace\scan.txt" -Exclude '$RECYCLE.BIN','System Volume Information'
+# Usage (paths below are placeholders - pass real values as parameters):
+#   powershell -NoProfile -ExecutionPolicy Bypass -File measure_dirs.ps1 -Root "D:\" -OutFile "<输出目录>\scan.txt" -Exclude '$RECYCLE.BIN','System Volume Information'
 #
 # Output format per dir (pipe delimited, mostly ASCII; Chinese dir names may mojibake in background runs):
 #   === <DirName>
